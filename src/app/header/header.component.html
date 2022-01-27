@@ -1,0 +1,67 @@
+<nav class="navbar navbar-light" style="background-color: #2B2F77;">
+  <a routerLink="/" class="navbar-brand">
+    <img src = "../../assets/pngwing.com (2).png" />
+    <!--img src = "../../assets/logo life is good.jpg" /-->
+    <!--https://www.pngwing.com/en/search?q=life+Is+Good-->
+    </a>
+
+  <div>
+    <ul class="nav navbar">
+      <li>
+        <a
+          class="nav-link"
+          data-toggle="modal"
+          data-target="#modalFavourites"
+          (click)="openFavourites()"
+        >
+          <i class="fa fa-heart"></i>
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav-link"
+          data-toggle="modal"
+          data-target="#modalCart"
+          (click)="openCart()"
+        >
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/add">
+          <i class="fas fa-plus-circle"></i>
+        </a>
+      </li>
+
+      <li *ngIf="role === true" class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/edit">
+          <i class="fas fa-edit"></i>
+        </a>
+      </li>
+
+      <li *ngIf="logged==false" class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/login">
+          <i class="fa fa-sign-in"></i>
+        </a>
+      </li>
+      <li *ngIf="logged==true" class="nav-item" routerLinkActive="active-page">
+        <a class="nav-link" routerLink="/login">
+          <i class="fa fa-user-circle"></i>
+        </a>
+        
+      </li>
+      <h5 *ngIf="logged==true">Bine ai venit, {{username}}!</h5>
+      <div class="dropdown" mdbDropdown>
+      <button *ngIf="logged==true" type="button" mdbDropdownToggle mdbBtn color="indigo" class="dropdown-toggle dropdown-toggle-split px-3 waves-light"
+    mdbWavesEffect></button>
+  <div class="dropdown-menu dropdown-menu-left" *ngIf="logged==true">
+    <a class="dropdown-item" (click)="logoutUser(); reloadCurrentPage();">Logout</a>
+    </div>
+  </div>
+    </ul>
+  </div>
+
+</nav>
+<app-cart-modal #cartModal></app-cart-modal>
+<app-favourites-modal #favouritesModal></app-favourites-modal>

@@ -1,0 +1,76 @@
+<div bsModal class=" row modal fade" #detailRestaurantModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="detailRestaurantModal"
+     aria-hidden="true" style="margin-top:200px;">
+  <div class="col-md-6 col-sm-6 col-lg-8 mx-auto my-4" id="modal">
+
+    <div class="container col-lg-12">
+      <div class="row">
+
+        <div class="col-lg-4" style="padding-right:0">
+          <img [src]="restaurant.listaImagini" class="img-fluid z-depth-1 rounded">
+        </div>
+   
+      <div class="col-lg-8" style="padding-left:10px">
+        <div class="row">
+          <div class="details">
+          <p> {{restaurant.nume}} </p>
+          <p> - {{restaurant.oras}}</p>
+          <!--p id="oras">{{cazare.oras}}</p-->
+
+          <h6>--Meniu--</h6>
+          <!--table>
+            <tbody>
+              <tr *ngFor = "let mancare of restaurant.meniu; let i=index">
+                <th scope="row">{{mancare}}</th>
+              </tr>
+              <tr *ngFor = "let pret of restaurant.preturiMeniu; let i=index">
+                <th scope="row">{{pret}}</th>
+              </tr>
+            </tbody>
+          </table-->
+          <ul>
+            <li *ngFor = "let mancare of restaurant.meniu"> {{mancare}}</li>
+          </ul>
+
+          <ul style="padding-left: 40px; list-style: none;">
+            <li *ngFor = "let pret of restaurant.preturiMeniu">{{pret}}</li>
+          </ul>
+
+          <h6>Program:</h6>
+          <h6>Luni - Duminica : {{ restaurant.oraDeschidere}} - {{ restaurant.oraInchidere }}</h6>
+
+
+          </div>
+        </div>
+        <form class="text-center">
+          <h5>Data rezervare</h5>
+          <input type="text"  class="form-control mb-4" placeholder="aaaa.ll.zz" name="datarz"
+               autocomplete="off" id="drz" [(ngModel)] = "dataRezervare">
+               <h5>Ora rezervare</h5>
+          <input type="text"  class="form-control mb-4" placeholder="18:00" name="orarz"
+               autocomplete="off" id="drz" [(ngModel)] = "oraRezervare">
+          <h5>Numar persoane</h5>
+            <input type="" class="form-control mb-4" placeholder="1" name="nrpers"
+            autocomplete="off" id="nrp" [(ngModel)] = "numarPersoane">
+        </form>
+        <div class="row">
+          <div class="button">
+        <button type = "button" class="btn btn-dark" (click)="addFavourites(restaurant)">Adauga la favorite</button>
+          <button type="button" class="btn btn-dark" (click)="addCart(restaurant)">Adauga in cos</button>
+         
+        </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+
+
+</div>
+
+
+  </div>
+
+
+

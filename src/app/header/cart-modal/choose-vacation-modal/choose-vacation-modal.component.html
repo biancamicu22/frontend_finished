@@ -1,0 +1,34 @@
+<div bsModal
+    class="modal fade"
+    #chooseVacationModal="bs-modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="chooseVacationModal"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Alegeti vacanta pentru care doriti sa faceti rezervarile:</h4>
+        </div>
+        <!--Body-->
+        <div class="modal-body">
+          <form [formGroup]="vacanteForm">
+ 
+            <p>
+             
+              <select formControlName="vacanta">
+                <option [ngValue]="null" disabled>Selecteaza vacanta</option>
+                <option *ngFor="let vacanta of vacanteDisponibile" [ngValue]="vacanta.id">{{vacanta.denumire}}</option>
+              </select>
+             
+              <button type="button" class="btn btn-dark" (click)="get(); modal.hide();">Alege</button>
+            </p>
+             
+            </form>
+        
+            </div>
+            </div>
+        </div>
+    </div>

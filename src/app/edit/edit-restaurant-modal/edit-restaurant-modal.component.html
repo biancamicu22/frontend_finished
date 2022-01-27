@@ -1,0 +1,51 @@
+<div mdbModal class=" row modal fade" #editRestaurantModal="mdbModal" tabindex="-1" role="dialog"
+  aria-labelledby="editRestaurantModal" aria-hidden="true" (onHide)=" this.editRestaurantForm.reset();">
+  <div class="col-md-6 col-sm-6 col-lg-4 mx-auto my-4" *ngIf="editRestaurantForm">
+
+
+    <form class="text-center border border-light p-5" [formGroup]="editRestaurantForm" (ngSubmit)="editRestaurant()">
+
+      <p class="h4 mb-4">Editeaza Restaurant </p>
+
+      <label for="nume">Nume</label>
+      <input type="text" id="nume" class="form-control mb-4" formControlName="nume" autocomplete="off">
+
+      <!-- <label for="oraDeschidere">Ora deschidere</label>
+      <input type="text" id="oraDeschidere" class="form-control mb-4" formControlName="oraDeschidere" autocomplete="off">
+
+      <label for="oraInchidere">Ora inchidere</label>
+      <input type="text" id="oraInchidere" class="form-control mb-4" formControlName="oraInchidere" autocomplete="off"> -->
+
+      <label for="adresa">Adresa</label>
+      <input type="text" id="adresa" class="form-control mb-4" formControlName="adresa" autocomplete="off">
+
+      <label for="oras">Oras</label>
+      <input type="text" id="oras" class="form-control mb-4" formControlName="oras" autocomplete="off">
+
+      <label for="meniuID">Meniu</label>
+      <input type="text" id="meniuID" class="form-control novalidate mb-4" formControlName="meniuID" autocomplete="off">
+      <!--select name="facilitiesSelectedOptions" [(ngModel)]="facilitiesSelectedOptions" multiple>
+        <option *ngFor="let facilitate of facilities" [ngValue]="facilitate.id">{{facilitate.denumire}}</option>
+      </select-->
+      <!--label class="form-label select-label" for="listaFacilitati">Example label</label>
+      <select class="select" formControlName="listaFacilitati"  multiple>
+        <option *ngFor="let facilitate of facilities" >{{facilitate.id}}</option>
+      </select-->
+
+      <!--mat-form-field appearance="fill">
+        <mat-label>Toppings</mat-label>
+        <div class="formzindex">
+        <mat-select formControlName="listaFacilitati" [(ngModel)]="facilitiesSelectedOptions">
+          <mat-option *ngFor="let facilitate of facilities" [value]="facilitate.id">{{facilitate.denumire}}</mat-option>
+        </mat-select>
+      </div>
+      </mat-form-field-->
+
+
+      <button mdbBtn color="danger" block="true" class="my-4" type="submit"
+        [disabled]="!this.editRestaurantForm.valid || this.editRestaurantForm.pristine">Actualizeaza</button>
+
+    </form>
+
+  </div>
+</div>

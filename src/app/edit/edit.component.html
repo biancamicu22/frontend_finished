@@ -1,0 +1,150 @@
+  <div *ngIf="role === true">
+  <h1>Editeaza servicii</h1>
+  <div class="container" *ngIf="logged ===  true">
+    <div class="cazare">
+      <p>Cazari</p>
+      <table class="table table-striped " style="text-align: center;">
+        <thead>
+          <tr>
+            <th scope="col" style="width:5%">ID</th>
+            <th scope="col" style="width:20%">Nume</th>
+            <th scope="col" style="width:10%">Tip cazare</th>
+            <th scope="col" style="width:8%">Pret</th>
+            <th scope="col" style="width:20%">Adresa</th>
+            <th scope="col" style="width:10%">Oras</th>
+            <th scope="col" style="width:30%">Facilitati</th>
+            <!--th scope="col" style="width:30%">Imagini</th-->
+            <th scope="col" style="width:10%">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cazare of cazari;let i=index">
+            <th scope="row">{{cazare.id}}</th>
+            <td>{{cazare.nume}}</td>
+            <td>{{cazare.tipCazare}}</td>
+            <td>{{cazare.pret}}</td>
+            <td>{{cazare.adresa}}</td>
+            <td>{{cazare.oras}}</td>
+            <td>{{cazare.listaFacilitati}}</td>
+            <td><a class=" dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"></a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" (click)="showM1(cazare.id)"><i class="fas fa-pen"></i> Modifica</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="deleteCazare(cazare.id)"><i class="fas fa-eraser"></i> Sterge aceasta
+                  cazare</a>
+              </div>
+            </td>
+
+
+          </tr>
+
+
+        </tbody>
+      </table>
+
+    </div>
+
+
+
+    <div class="atractie">
+      <p>Atractii</p>
+      <table class="table table-striped " style="text-align: center;">
+        <thead>
+          <tr>
+            <th scope="col" style="width:5%">ID</th>
+            <th scope="col" style="width:20%">Denumire</th>
+            <th scope="col" style="width:8%">Pret</th>
+            <th scope="col" style="width:20%">Adresa</th>
+            <th scope="col" style="width:10%">Oras</th>
+            <th scope="col" style="width:10%">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let atractie of atractii;let i=index">
+            <th scope="row">{{atractie.id}}</th>
+            <td>{{atractie.denumire}}</td>
+            <td>{{atractie.pret}}</td>
+            <td>{{atractie.adresa}}</td>
+            <td>{{atractie.oras}}</td>
+
+
+            <td><a class=" dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"></a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" (click)="showM2(atractie.id)"><i class="fas fa-pen"></i> Modifica</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="deleteAtractie(atractie.id)"><i class="fas fa-eraser"></i> Sterge
+                  aceasta atractie</a>
+              </div>
+            </td>
+
+
+          </tr>
+
+
+        </tbody>
+      </table>
+
+    </div>
+
+
+    <!-- <div class="restaurant">
+      <p>Restaurante</p>
+      <table class="table table-striped " style="text-align: center;">
+        <thead>
+          <tr>
+            <th scope="col" style="width:5%">ID</th>
+            <th scope="col" style="width:20%">Nume</th>
+            <th scope="col" style="width:15%">Program</th>
+            <th scope="col" style="width:20%">Adresa</th>
+            <th scope="col" style="width:10%">Oras</th>
+            <th scope="col" style="width:30%">Meniu</th>
+            <th scope="col" style="width:10%">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let restaurant of restaurante;let i=index">
+            <th scope="row">{{restaurant.id}}</th>
+            <td>{{restaurant.nume}}</td>
+            <td>{{restaurant.oraDeschidere}} - {{restaurant.oraInchidere}}</td>
+            <td>{{restaurant.adresa}}</td>
+            <td>{{restaurant.oras}}</td>
+            <td>{{restaurant.meniu}}</td>
+
+
+            <td><a class=" dropdown-toggle" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"></a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown3">
+                <a class="dropdown-item" (click)="showM3(restaurant.id)"><i class="fas fa-pen"></i> Modifica</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="deleteRestaurant(restaurant.id)"><i class="fas fa-eraser"></i> Sterge
+                  acest restaurant</a>
+              </div>
+            </td>
+
+
+          </tr>
+
+
+        </tbody>
+      </table>
+
+    </div> -->
+  </div>
+  <div *ngIf="logged === false" class="modal-body">
+    <div class="alert alert-warning" role="alert">
+      Trebuie sa fii logat ca sa poti modifica servicii deja existente!
+    </div>
+  </div>
+</div>
+
+  <app-edit-cazare-modal #editCazareModal (change)="changeE($event)"></app-edit-cazare-modal>
+  <!-- <app-edit-restaurant-modal #editRestaurantModal (change)="changeE($event)"></app-edit-restaurant-modal> -->
+  <app-edit-atractie-modal #editAtractieModal (change)="changeE($event)"></app-edit-atractie-modal>

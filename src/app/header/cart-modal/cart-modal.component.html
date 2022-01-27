@@ -1,0 +1,100 @@
+<div bsModal class="modal fade" #cartModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="cartModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Cosul tau</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="modal.hide(); totalFinal=0">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div *ngIf="logged === true" class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Serviciu</th>
+              <th>Denumire</th>
+              <th>Date</th>
+              <th>Numar zile/bilete/persoane</th>
+              <th>Pret total</th>
+              <th>Sterge</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rezervare of rezervariCazari; let i = index">
+              <th scope="row">{{ i+1 }}</th>
+              <td>cazare</td>
+              <td>{{ rezervare.nume }}</td>
+              <td>{{ dateStart[i] }} - {{ dateSfarsit[i] }}</td>
+              <td>{{ differenceBetweenDates[i] }}</td>
+              <td>{{ totalCazare[i] }}</td>
+              <td>
+                <a (click)="delete(i, totalCazare[i])"><i class="fas fa-times"></i></a>
+              </td>
+            </tr>
+            <tr *ngFor="let atractie of rezervariAtractii; let i = index">
+              <th scope="row">{{ rezervariCazari.length + i + 1 }}</th>
+              <td>atractie</td>
+              <td>{{ atractie.denumire }}</td>
+              <td>{{ dateViziteAtractii[i] }}</td>
+              <td>{{ numarBilete[i] }}</td>
+              <td>{{ totalAtractie[i] }}</td>
+              <td>
+                <a (click)="delete(rezervariCazari.length + i + 1, totalAtractie[i])"><i class="fas fa-times"></i></a>
+              </td>
+            </tr>
+
+            <tr *ngFor="let restaurant of rezervariRestaurante; let i = index">
+              <th scope="row">{{ rezervariCazari.length + rezervariAtractii.length + i + 1 }}</th>
+              <td>restaurant</td>
+              <td>{{ restaurant.nume }}</td>
+              <td>{{ dateRezervariRestaurante[i] }}</td>
+              <td>{{ numarPersoane[i] }}</td>
+              <td>0</td>
+              <td>
+                <a (click)="delete(rezervariCazari.length + rezervariAtractii.length + i + 1, 0)"><i
+                    class="fas fa-times"></i></a>
+              </td>
+            </tr>
+            <tr class="total">
+              <th scope="row"></th>
+              <td>Total</td>
+              <td>{{ totalFinal }}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="logged === false" class="modal-body">
+        <div class="alert alert-warning" role="alert">
+          Trebuie sa fii logat ca sa poti accesa continutul cosului tau!
+        </div>
+        
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal"
+          (click)="totalFinal = 0; modal.hide()">
+          Iesire
+        </button>
+        <button type="button" [disabled]="logged === false" class="btn btn-primary" data-toggle="modal" data-target="#checkoutModal" data-dismiss="modal"
+          (click)="vacationModal.show(); doLater();">
+          Rezerva
+        </button>
+        <div *ngIf="cannotAdd === true" class="alert alert-warning" role="alert">
+          Datele rezervarii introduse de tine nu se incadreaza in datele vacantei dorite.
+        </div>
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          Rezervarile au fost efectuate cu succes!
+        </div>
+        <div *ngIf="success === false" class="alert alert-danger" role="alert">
+          S-a produs o eroare! Te rugam sa incerci din nou!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-choose-vacation-modal #chooseVacationModal></app-choose-vacation-modal>

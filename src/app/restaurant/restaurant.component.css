@@ -1,0 +1,85 @@
+.detail {
+    font-size: 25px;
+    font-weight: 400;
+  }
+  
+  #p1 {
+    padding-left: 20px;
+    text-align: center;
+    font-weight: 500;
+    padding-top: 5px;
+    height:79px;
+    max-height: 79px;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+  
+  #p2 {
+    float: right;
+    padding-right: 20px;
+  }
+  
+  #container-content {
+    padding: 40px;
+    padding-left: 15%;
+    text-align: center;
+  }
+  
+  form {
+    margin: auto;
+    padding-bottom: 30px;
+  }
+  
+  table {
+    margin-left: 3%;
+    width: 275px;
+    margin-top: 8%;
+    left: -1;
+    table-layout: fixed;
+    text-align: center;
+    float: left;
+    border: solid black 3px;
+    border-collapse: collapse;
+    border-radius: 30px;
+    border-style: hidden; /* hide standard table (collapsed) border */
+    box-shadow: 0 0 0 3px #666; /* this draws the table border  */ 
+    box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
+    background-color:lavender;
+  
+  }
+  
+  td, th {
+    width: 60%;
+    margin: 0px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: larger;
+  }
+  
+  
+  h2 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-top: 4%;
+  }
+  
+  .container {
+    max-width: 90%;
+  }
+  
+  .add {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 22px;
+    color: black;
+  }
+  
+  img {
+    width: 100%;
+  }
+  
+  .view .mask {
+    height: 88%;
+  }
+  

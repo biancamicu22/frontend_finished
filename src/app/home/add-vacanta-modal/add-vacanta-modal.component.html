@@ -1,0 +1,107 @@
+<form [formGroup]="AddVacantaForm">
+<div mdbModal #vacantaModal="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="vacantaModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Adauga vacanta</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="vacantaModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="logged === true" class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="tag" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="nume" class="form-control" mdbInput mdbValidate formControlName="denumire">
+          <label for="nume">Denumire</label>
+          <mdb-error
+            *ngIf="f.denumire.invalid && (f.denumire.dirty || f.denumire.touched)">Nume incorect
+          </mdb-error>
+          <mdb-success
+            *ngIf="f.denumire.valid && (f.denumire.dirty || f.denumire.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="calendar" class="prefix grey-text"></mdb-icon>
+          <input type="date" id="dataI" class="form-control" mdbInput mdbValidate
+                 formControlName="dataInceput">
+          <label for="dataI">Data start</label>
+          <mdb-error
+            *ngIf="f.dataInceput.invalid && (f.dataInceput.dirty || f.dataInceput.touched)">
+            Input gresit
+          </mdb-error>
+          <mdb-success
+            *ngIf="f.dataInceput.valid && (f.dataInceput.dirty || f.dataInceputtouched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="calendar" class="prefix grey-text"></mdb-icon>
+          <input type="date" id="dataS" class="form-control" mdbInput mdbValidate
+                 formControlName="dataSfarsit">
+          <label for="dataS">Data sfarsit</label>
+          <mdb-error
+            *ngIf="f.dataSfarsit.invalid && (f.dataSfarsit.dirty || f.dataSfarsit.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="f.dataSfarsit.valid && (f.dataSfarsit.dirty || f.dataSfarsit.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="tag" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="oras" class="form-control" mdbInput mdbValidate
+                 formControlName="oras">
+          <label for="oras">Oras</label>
+          <mdb-error
+            *ngIf="f.oras.invalid && (f.oras.dirty || f.oras.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="f.oras.valid && (f.oras.dirty || f.oras.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-5">
+            <mdb-icon fas icon="tag" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="tara" class="form-control" mdbInput mdbValidate
+                   formControlName="tara">
+            <label for="tara">Tara</label>
+            <mdb-error
+              *ngIf="f.tara.invalid && (f.tara.dirty || f.tara.touched)">
+              Input invalid
+            </mdb-error>
+            <mdb-success
+              *ngIf="f.tara.valid && (f.tara.dirty || f.tara.touched)">
+              Input valid
+            </mdb-success>
+          </div>
+
+      </div>
+      <div *ngIf="logged === false" class="modal-body">
+        <div class="alert alert-warning" role="alert">
+          Pentru a putea beneficia de serviciile noastre trebuie sa te loghezi sau sa iti faci un cont nou.
+        </div>
+        </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn [disabled]="logged === false" color="unique" class="waves-light" (click)="addNew();" mdbWavesEffect>Trimite
+          <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </button>
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          Felicitari! Ai adaugat o vacanta noua!
+        </div>
+        <div *ngIf="success === false" class="alert alert-danger" role="alert">
+          S-a produs o eroare! Te rugam sa incerci din nou!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

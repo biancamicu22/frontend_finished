@@ -1,0 +1,55 @@
+<div bsModal class=" row modal fade" #detailModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="detailModal"
+     aria-hidden="true" style="margin-top:200px;">
+  <div class="col-md-6 col-sm-6 col-lg-8 mx-auto my-4" id="modal">
+
+    <div class="container col-lg-12">
+      <div class="row">
+
+        <div class="col-lg-4" style="padding-right:0">
+          <img [src]="cazare.setImagini" class="img-fluid z-depth-1 rounded">
+        </div>
+   
+      <div class="col-lg-8" style="padding-left:10px">
+        <div class="row">
+          <div class="details">
+          <p> {{cazare.nume}} </p>
+          <p> - {{cazare.oras}}</p>
+          <!--p id="oras">{{cazare.oras}}</p-->
+
+          <ol>
+            <li *ngFor = "let facilitate of cazare.listaFacilitati"> {{facilitate}}</li>
+          </ol>
+
+          </div>
+        </div>
+        <form class="text-center">
+          <h5>Data start</h5>
+          <input type="text"  class="form-control mb-4" placeholder="aaaa.ll.zz" name="datast"
+               autocomplete="off" id="dst" [(ngModel)] = "dataStart">
+               <h5>Data sfarsit</h5>
+          <input type="text"  class="form-control mb-4" placeholder="aaaa.ll.zz" name="datasf"
+                autocomplete="off" id="dsf" [(ngModel)] = "dataSfarsit">
+        </form>
+        <div class="row">
+          <div class="button">
+        <span >{{cazare.pret}} lei/noapte</span>
+        <button type = "button" class="btn btn-dark" (click)="addFavourites(cazare)">Adauga la favorite</button>
+          <button type="button" class="btn btn-dark" (click)="addCart(cazare)">Adauga in cos</button>
+         
+        </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+
+
+</div>
+
+
+  </div>
+
+
+

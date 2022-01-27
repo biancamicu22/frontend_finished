@@ -1,0 +1,182 @@
+<h1>Adauga serviciile care ti-au marcat calatoria</h1>
+<div class="container" *ngIf="logged ===  true">
+
+<!-- Tabs content -->
+
+<!--div id="text">
+  <p style="display: inline; margin-right: 10px; ">Add new</p>
+  <div *ngFor="let option of options" style="display: inline; margin-left:10px; ">
+       <input type="radio" name="option" [value]="option" (change)="radioChange($event)" checked="checked"><i>{{option}}</i>
+  </div>
+</div-->
+<button mdbBtn type="button" gradient="peach" rounded="true" data-toggle="collapse" href="#createAtractie" aria-expanded="false"
+aria-controls="createCazare" size="lg" mdbWavesEffect>Adauga atractie</button>
+<button mdbBtn type="button" gradient="purple" rounded="true" data-toggle="collapse" href="#createCazare" aria-expanded="false"
+aria-controls="createCazare" size="lg" mdbWavesEffect>Adauga cazare</button>
+<button mdbBtn type="button" gradient="blue" rounded="true" data-toggle="collapse" href="#createFacilitate" aria-expanded="false"
+aria-controls="createFacilitate" size="lg" mdbWavesEffect>Adauga facilitate</button>
+<!-- <button mdbBtn type="button" gradient="aqua" rounded="true" data-toggle="collapse" href="#createMancare" aria-expanded="false"
+aria-controls="createMancare" size="lg" mdbWavesEffect>Adauga mancare</button>
+<button mdbBtn type="button" gradient="young-passion" rounded="true" data-toggle="collapse" href="#createRestaurant" aria-expanded="false"
+aria-controls="createRestaurant" size="lg" mdbWavesEffect>Adauga restaurant</button> -->
+    </div>
+    <div class="col d-flex justify-content-center">
+<div class="collapse col-md-6" id="createAtractie" >
+      <div class="card card-body">
+        <form [formGroup]="addAtractieForm">
+          <div class="form-group">
+            <label for="denumire">Denumire</label>
+            <input type="text" class="form-control" placeholder="ex: Muzeul Luvru" formControlName="denumire">
+          </div>
+          <!-- <div class="form-group">
+            <label for="oraDeschidere">Ora deschidere</label>
+            <input type="text" class="form-control" placeholder="ex: 12:00 " formControlName="oraDeschidere">
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="oraInchidere">Ora inchidere</label>
+            <input type="text" class="form-control" placeholder="ex: 18:00" formControlName="oraInchidere">
+          </div> -->
+          <div class="form-group">
+            <label for="pret">Pret</label>
+            <input type="text" class="form-control" placeholder="ex: 12" formControlName="pret">
+          </div>
+          <div class="form-group">
+            <label for="oras">Oras</label>
+            <input type="text" class="form-control" placeholder="ex: Paris" formControlName="oras">
+          </div>
+          <div class="form-group">
+            <label for="adresa">Adresa</label>
+            <input type="text" class="form-control" placeholder="ex: Str. Mihai Bravu nr.88" formControlName="adresa">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" id="adaugaAtractie" (click)="addNewAtractie();">Adauga</button>
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            Felicitari! Ai adaugat o atractie noua!
+          </div>
+          <div *ngIf="success === false" class="alert alert-danger" role="alert">
+            S-a produs o eroare! Te rugam sa incerci din nou!
+          </div>
+      </form>
+      </div>
+    </div>
+
+    <div class="collapse col-md-6" id="createCazare" >
+      <div class="card card-body">
+        <form [formGroup]="addCazareForm">
+          <div class="form-group">
+            <label for="nume">Nume</label>
+            <input type="text" class="form-control" placeholder="ex: Casa Morar" formControlName="nume">
+          </div>
+          <div class="form-group">
+            <label for="tipCazare">Tip cazare</label>
+            <input type="text" class="form-control" placeholder="ex: Apartament" formControlName="tipCazare">
+          </div>
+          <div class="form-group">
+            <label for="pret">Pret</label>
+            <input type="text" class="form-control" placeholder="ex: 12" formControlName="pret">
+          </div>
+          <div class="form-group">
+            <label for="oras">Oras</label>
+            <input type="text" class="form-control" placeholder="ex: Paris" formControlName="oras">
+          </div>
+          <div class="form-group">
+            <label for="adresa">Adresa</label>
+            <input type="text" class="form-control" placeholder="ex: Str. Mihai Bravu nr.88" formControlName="adresa">
+          </div>
+          <div class="form-group">
+            <label for="listaFacilitatiID">Lista facilitati</label>
+            <input type="text" class="form-control" placeholder="ex: 1, 3, 5, 7, 9" formControlName="listaFacilitatiID">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" id="adaugaCazare" (click)="addNewCazare();">Adauga</button>
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            Felicitari! Ai adaugat o cazare noua!
+          </div>
+          <div *ngIf="success === false" class="alert alert-danger" role="alert">
+            S-a produs o eroare! Te rugam sa incerci din nou!
+          </div>
+      </form>
+      </div>
+    </div>
+
+
+    <div class="collapse col-md-6" id="createFacilitate" >
+      <div class="card card-body">
+        <form [formGroup]="addFacilitateForm">
+          <div class="form-group">
+            <label for="denumire">Denumire</label>
+            <input type="text" class="form-control" placeholder="ex: Baie in camera / Aparat de cafea etc." formControlName="denumire">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" id="adaugaFacilitate" (click)="addNewFacilitate();">Adauga</button>
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            Felicitari! Ai adaugat o noua facilitate disponibila pentru cazarile noastre!
+          </div>
+          <div *ngIf="success === false" class="alert alert-danger" role="alert">
+            S-a produs o eroare! Te rugam sa incerci din nou!
+          </div>
+      </form>
+      </div>
+    </div>
+
+
+    <div class="collapse col-md-6" id="createMancare" >
+      <div class="card card-body">
+        <form [formGroup]="addMancareForm">
+          <div class="form-group">
+            <label for="denumire">Denumire</label>
+            <input type="text" class="form-control" placeholder="ex: Salata / Friptura de pui / Ciorba de vacuta / Tiramisu etc." formControlName="denumire">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" id="adaugaMancare" (click)="addNewMancare();">Adauga</button>
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            Felicitari! Ai contribuit la lista noastra de mancaruri disponibila!
+          </div>
+          <div *ngIf="success === false" class="alert alert-danger" role="alert">
+            S-a produs o eroare! Te rugam sa incerci din nou!
+          </div>
+      </form>
+      </div>
+    </div>
+
+
+    <div class="collapse col-md-6" id="createRestaurant" >
+      <div class="card card-body">
+        <form [formGroup]="addRestaurantForm">
+          <div class="form-group">
+            <label for="nume">Nume</label>
+            <input type="text" class="form-control" placeholder="ex: Casa berarilor" formControlName="nume">
+          </div>
+          <!-- <div class="form-group">
+            <label for="oraDeschidere">Ora deschidere</label>
+            <input type="text" class="form-control" placeholder="ex: 12:00 " formControlName="oraDeschidere">
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="oraInchidere">Ora inchidere</label>
+            <input type="text" class="form-control" placeholder="ex: 18:00" formControlName="oraInchidere">
+          </div> -->
+          <div class="form-group">
+            <label for="oras">Oras</label>
+            <input type="text" class="form-control" placeholder="ex: Paris" formControlName="oras">
+          </div>
+          <div class="form-group">
+            <label for="adresa">Adresa</label>
+            <input type="text" class="form-control" placeholder="ex: Str. Mihai Bravu nr.88" formControlName="adresa">
+          </div>
+          <div class="form-group">
+            <label for="meniuID">Meniu</label>
+            <input type="text" class="form-control" placeholder="ex: 1, 3, 5, 7, 9" formControlName="meniuID">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" id="adaugaRestaurant" (click)="addNewRestaurant();">Adauga</button>
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            Felicitari! Ai adaugat un restaurant nou!
+          </div>
+          <div *ngIf="success === false" class="alert alert-danger" role="alert">
+            S-a produs o eroare! Te rugam sa incerci din nou!
+          </div>
+      </form>
+      </div>
+    </div>
+    </div>
+    <div *ngIf="logged === false" class="modal-body">
+      <div class="alert alert-warning" role="alert">
+        Trebuie sa fii logat ca sa poti adauga servicii noi!
+      </div>
+    </div>
+

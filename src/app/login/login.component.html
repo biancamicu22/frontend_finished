@@ -1,0 +1,215 @@
+<!--div class="col-md-6 offset-md-3 mt-5" >
+    <div class="card" style="float: left;">
+        <h4 class="card-header">Login</h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Camp obligatoriu</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="parola">Parola</label>
+                    <input type="password" formControlName="parola" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.parola.errors }" />
+                    <div *ngIf="submitted && f.parola.errors" class="invalid-feedback">
+                        <div *ngIf="f.parola.errors.required">Camp obligatoriu</div>
+                    </div>
+                </div>
+                <button type="submit" [routerLink]="isLoggedIn ? [''] : []" routerLinkActive="active" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="loginError" class="alert alert-danger mt-3 mb-0">{{loginError}}</div>
+            </form>
+        </div>
+    </div>
+</div-->
+
+
+<!--section class="form-dark">
+
+
+    <mdb-card style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/pricing-table7.jpg')" style="width: 28rem; background-size: cover">
+      <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+  
+
+        <div class="text-center">
+          <h3 class="white-text mb-5 mt-4 font-weight-bold">
+            <strong>SIGN</strong>
+            <a class="green-text font-weight-bold">
+              <strong> UP</strong>
+            </a>
+          </h3>
+        </div>
+  
+
+        <form *ngIf="inLogin" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+  
+  
+          <div class="md-form">
+            <input type="email" id="defaultLoginFormEmail" class="form-control white-text" formControlName="darkFormEmailEx" 
+            formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  mdbInput>
+            <label for="ddefaultLoginFormEmail">Your email</label>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Camp obligatoriu</div>
+            </div>
+          </div>
+  
+          <div class="md-form pb-3">
+            <input type="password" id="defaultLoginFormPassword" class="form-control white-text" formControlName="darkFormPasswordEx" mdbInput>
+            <label for="defaultLoginFormPassword">Your password</label>
+            <mdb-checkbox mdbInput class="my-4 white-text">Accept the
+              <a href="#" class="green-text font-weight-bold"> Terms and Conditions</a></mdb-checkbox>
+          </div>
+        </form>
+  
+
+        <div class="row d-flex align-items-center mb-4">
+  
+
+          <div class="text-center mb-3 col-md-12">
+            <button type="button" mdbBtn color="success" block="true" rounded="true" class="z-depth-1 waves-light" mdbWavesEffect>Sign in</button>
+          </div>
+
+        </div>
+
+  
+
+        <div class="col-md-12">
+          <p class="font-small white-text d-flex justify-content-end">Have an account?
+            <a href="#" class="green-text ml-1 font-weight-bold"> Log in</a>
+          </p>
+        </div>
+
+  
+      </div>
+    </mdb-card>
+  
+  </section-->
+ 
+
+  <!-- Default form login -->
+  <div align="center">
+    <div class="body-form bg-img">
+      <form *ngIf="inLogin" class="text-center border-light p-5 " [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+  
+          <p class="h4 mb-4" style="color:white; font-weight:bold;">Login</p>
+  
+          <!-- Email -->
+          <div class="form-group">
+              <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+                  formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted}" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Camp obligatoriu</div>
+              </div>
+          </div>
+          <!-- Password -->
+          <div class="form-group">
+              <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Parola"
+                  formControlName="parola" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.parola.errors }" />
+              <div *ngIf="submitted && f.parola.errors" class="invalid-feedback">
+                  <div *ngIf="f.parola.errors.required">Camp obligatoriu</div>
+              </div>
+          </div>
+          <!-- Sign in button -->
+          <button mdbBtn color="info" block="true" class="my-4" type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Login
+          </button>
+  
+          <!-- Register -->
+          <p style="color:white; font-weight:bold; font-size:25px;">Nu esti inca membru?
+              <button type="button" mdbBtn color="deep-purple" class="my-4"
+                  (click)="inRegister=true; inLogin=false;">Inregistreaza-te</button>
+          </p>
+  
+      </form>
+      <!-- Default form login -->
+
+
+    <!-- Default form register -->
+    <form *ngIf="inRegister" class="text-center border-light p-5" [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+
+        <p class="h4 mb-4" style="color:white; font-weight:bold;">Inregistrare cont</p>
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- First name -->
+                <div class="form-group">
+                    <input type="text" id="defaultRegisterFormNume" class="form-control mb-4" placeholder="Nume"
+                        formControlName="nume" class="form-control" [ngClass]="{ 'is-invalid': submitted && f1.nume.errors }" />
+                    <div *ngIf="submitted && f1.nume.errors" class="invalid-feedback">
+                        <div *ngIf="f.nume.errors.required">Camp obligatoriu</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <div class="form-group">
+                    <input type="text" id="defaultRegisterFormPrenume" class="form-control mb-4" placeholder="Prenume"
+                        formControlName="prenume" class="form-control" [ngClass]="{ 'is-invalid': submitted && f1.prenume.errors }" />
+                    <div *ngIf="submitted && f1.prenume.errors" class="invalid-feedback">
+                        <div *ngIf="f1.prenume.errors.required">Camp obligatoriu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- E-mail -->
+        <div class="form-group">
+            <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Email"
+                formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f1.email.errors }" />
+            <!--div *ngIf="submitted && f1.email.errors" class="invalid-feedback">
+                <div *ngIf="f1.email.errors.required">Camp obligatoriu</div>
+            </div-->
+        </div>
+
+        <!-- Phone number -->
+        <div class="form-group">
+            <input type="text" id="defaultRegisterFormPhoneNumber" class="form-control mb-4" placeholder="Telefon"
+                formControlName="telefon" class="form-control" [ngClass]="{ 'is-invalid': submitted && f1.telefon.errors }" />
+            <div *ngIf="submitted && f1.telefon.errors" class="invalid-feedback">
+                <div *ngIf="f1.telefon.errors.required">Camp obligatoriu</div>
+            </div>
+        </div>
+        <small id="defaultRegisterFormPhoneHelpBlock" class="form-text mb-4" style="color:white; font-weight:bold; font-size:20px;">
+            Optional
+        </small>
+
+        <!-- Username -->
+        <div class="form-group">
+            <input type="text" id="defaultRegisterFormUsername" class="form-control mb-4" placeholder="Username"
+                formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f1.username.errors }" />
+            <div *ngIf="submitted && f1.username.errors" class="invalid-feedback">
+                <div *ngIf="f1.username.errors.required">Camp obligatoriu</div>
+            </div>
+        </div>
+
+
+        <!-- Password -->
+        <div class="form-group">
+            <input type="password" id="defaultRegisterFormPassword" class="form-control mb-4" placeholder="Parola"
+                formControlName="parola" class="form-control" [ngClass]="{ 'is-invalid': submitted && f1.parola.errors }" />
+            <div *ngIf="submitted && f1.parola.errors" class="invalid-feedback">
+                <div *ngIf="f1.parola.errors.required">Camp obligatoriu</div>
+            </div>
+        </div>
+
+
+
+        <!-- Sign up button -->
+        <button mdbBtn color="info" block="true" class="my-4" type="submit">Inregistrare</button>
+        <button mdbBtn color="deep-purple" block="true" class="my-4" type="submit" (click)="inRegister=false; inLogin=true;">Revino la login</button>
+
+        <!-- Terms of service -->
+        <p style="color:white; font-weight:bold; font-size:25px;">Apasand
+            <em>Inregistrare</em> sunteti de acord cu
+            <a href="" target="_blank">termenii si conditiile</a>
+        </p>
+
+    </form>
+    <!-- Default form register -->
+    </div>
+    </div>

@@ -1,0 +1,54 @@
+<div bsModal class=" row modal fade" #detailAtractieModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="detailAtractieModal"
+     aria-hidden="true" style="margin-top:200px;">
+  <div class="col-md-6 col-sm-6 col-lg-8 mx-auto my-4" id="modal">
+
+    <div class="container col-lg-12">
+      <div class="row">
+
+        <div class="col-lg-4" style="padding-right:0">
+          <img [src]="atractie.listaImagini" class="img-fluid z-depth-1 rounded">
+        </div>
+   
+      <div class="col-lg-8" style="padding-left:10px">
+        <div class="row">
+          <div class="details">
+          <p> {{atractie.denumire}} </p>
+          <p> - {{atractie.oras}}</p>
+          <!--p id="oras">{{cazare.oras}}</p-->
+
+          <h6>Interval orar vizite:</h6>
+          <h6>Luni - Sambata : {{ atractie.oraDeschidere}} - {{ atractie.oraInchidere }}</h6>
+
+          </div>
+        </div>
+        <form class="text-center">
+          <h5>Data vizita</h5>
+          <input type="text"  class="form-control mb-4" placeholder="aaaa.ll.zz" name="datavz"
+               autocomplete="off" id="dvz" [(ngModel)] = "dataVizita">
+          <h5>Numar bilete</h5>
+            <input type="" class="form-control mb-4" placeholder="1" name="nrbil"
+            autocomplete="off" id="nrb" [(ngModel)] = "numarBilete">
+        </form>
+        <div class="row">
+          <div class="button">
+        <span>{{atractie.pret == 0 ? "Gratuit" : atractie.pret + " lei/bilet"}}</span>
+        <button type = "button" class="btn btn-dark" (click)="addFavourites(atractie);">Adauga la favorite</button>
+          <button type="button" class="btn btn-dark" (click)="addCart(atractie)">Adauga in cos</button>
+         
+        </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+
+
+</div>
+
+
+  </div>
+
+
+
