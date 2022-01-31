@@ -22,6 +22,7 @@ export class AuthGuard implements CanActivate {
             console.log(this.jwtHelper.isTokenExpired(currentUser.token))
             if (currentUser != null) {
                 if(this.jwtHelper.isTokenExpired(currentUser.token)){
+                    localStorage.setItem("userData",null);
                     this.performRedirect(route);
                         return false;
                 }
