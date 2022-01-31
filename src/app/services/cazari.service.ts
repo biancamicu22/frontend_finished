@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Atractie } from '../shared/atractie.model';
 import { Cazare } from '../shared/cazare.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,8 @@ export class CazariService {
   getCazare(id: string) {
     return this.http.get(this.baseUrl + '/cazare/Id?Id=' + id.toString(), { headers: this.header });
   }
-  getCazari() {
-    return this.http.get(this.baseUrl + '/cazare', { headers: this.header });
+  getCazari() : Observable<Array<Cazare>> {
+    return this.http.get<Array<Cazare>>(this.baseUrl + '/cazare', { headers: this.header });
   }
   editCazare(cazare: Cazare) {
     return this.http.put(this.baseUrl + '/cazare',cazare, { headers: this.privateHeader.headers });
@@ -47,5 +48,10 @@ export class CazariService {
   deleteCazare(id: number) {
     return this.http.delete(this.baseUrl + '/cazare/Id?Id=' + id.toString(), { headers: this.privateHeader.headers });
   }
+
+  getCazaryByPret() : Observable<Array<Cazare[]>>{
+    return this.http.get<Array<Cazare[]>>(this.baseUrl + '/cazare/byPret', { headers: this.header });
+  }
+  
 }
 

@@ -1,5 +1,6 @@
 export class Facilitate {
     id: number;
+    facilitate:number;
     denumire: string;
     favicon: string;
     

@@ -8,20 +8,21 @@ import { AtractieComponent } from './atractie/atractie.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
+import { AuthGuard } from './shared/auth.guard';
 //import { TermsComponent } from './terms/terms.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'add', component: AddComponent },
-  { path: 'edit', component: EditComponent },
-  { path: 'cazari', component: CazareComponent },
-  { path: 'atractii', component: AtractieComponent},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'add', component: AddComponent , canActivate: [AuthGuard]},
+  { path: 'edit', component: EditComponent , canActivate: [AuthGuard]},
+  { path: 'cazari', component: CazareComponent, canActivate: [AuthGuard] },
+  { path: 'atractii', component: AtractieComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
-  { path: 'restaurante', component: RestaurantComponent},
-  { path: 'contact', component: ContactComponent },
+  { path: 'restaurante', component: RestaurantComponent, canActivate: [AuthGuard]},
+  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   //{ path: 'terms', component: TermsComponent },
-  { path: '**', component: HomeComponent },
+  { path: '**', component: HomeComponent, canActivate: [AuthGuard] },
 
 ];
 

@@ -12,6 +12,7 @@
   import { Mancare } from './mancare.model';
   import { Meniu } from './meniu.model';
   import { Rezervare } from './rezervare.model';
+import { Observable } from 'rxjs';
 
 
 
@@ -184,8 +185,12 @@
 
  
 
-    getFacilitate(id: number) {
-      return this.http.get(this.baseUrl + '/facilitate/Id?Id=' + id.toString(), {headers: this.header});
+    getFacilitate(id: number) : Observable<Facilitate> {
+      return this.http.get<Facilitate>(this.baseUrl + '/facilitate/Id?Id=' + id.toString(), {headers: this.header});
+    }
+
+    getFacilitateID(id: number) {
+      return this.http.get(this.baseUrl + '/facilitate/facilitate/' + id.toString(), {headers: this.header});
     }
 
     getAlbums() {

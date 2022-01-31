@@ -77,7 +77,6 @@
 
       public IsUserAdmin(): boolean {
         if (this.currentUserValue != null) {
-          console.log(this.currentUserValue)
           if(this.currentUserValue.role == "Admin")
              return true;
         }
@@ -85,7 +84,6 @@
       }
 
       public   GetUserRole(): string {
-        console.log(this.currentUserValue);
         if (this.currentUserValue != null) {
           return this.currentUserValue.role;
         }

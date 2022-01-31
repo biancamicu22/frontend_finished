@@ -26,7 +26,7 @@
             <td>{{cazare.pret}}</td>
             <td>{{cazare.adresa}}</td>
             <td>{{cazare.oras}}</td>
-            <td>{{cazare.listaFacilitati}}</td>
+            <td>{{cazare.listaFacilitatiID}}</td>
             <td><a class=" dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false"></a>
 
@@ -91,6 +91,31 @@
       </table>
 
     </div>
+    <p>Cazari grupate dupa pret</p>
+    <table class="table table-striped " style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col" style="width:20%">Nume</th>
+          <th scope="col" style="width:10%">Tip cazare</th>
+          <th scope="col" style="width:20%">Adresa</th>
+          <th scope="col" style="width:10%">Oras</th>
+          <th scope="col" style="width:30%">Pret</th>
+          <!--th scope="col" style="width:30%">Imagini</th-->
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of keys;let i=index">
+          <td></td>
+          <td>{{cazare.tipCazare}}</td>
+          <td>{{cazare.adresa}}</td>
+          <td>{{cazare.oras}}</td>
+          <td>{{cazare.pret}}</td>
+        </tr>
+
+
+      </tbody>
+    </table>
 
 
     <!-- <div class="restaurant">

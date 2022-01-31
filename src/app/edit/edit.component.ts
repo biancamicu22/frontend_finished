@@ -14,6 +14,11 @@ import { LoginComponent } from '../login/login.component';
 import { AtractiiService } from '../services/atractii.services';
 import { CazariService } from '../services/cazari.service';
 import { UserService } from '../services/user.service';
+import { PachetService } from '../services/pachet.service';
+import { Pachet } from '../shared/pachet.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Facilitate } from '../shared/facilitate.model';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -23,12 +28,15 @@ import { UserService } from '../services/user.service';
 })
 export class EditComponent implements OnInit, OnDestroy {
   atractii: Atractie[] = [];
-  cazari: Cazare[] = [];
+  cazari = new Array<Cazare>();
+  facilitate: Facilitate
   restaurante: Restaurant[] = [];
   logged: boolean = false;
   role : boolean = false;
-
-
+  cazariPret : Array<Cazare[]>
+  pachete = new Array<Pachet>()
+  cazariByPret = new Map<number,Cazare>()
+  keys = Array<number>()
   @ViewChild('editCazareModal') editCazareModal: EditCazareModalComponent;
   @ViewChild('editRestaurantModal') editRestaurantModal: EditRestaurantModalComponent;
   @ViewChild('editArtistModal') editArtistModal: EditArtistModalComponent;
@@ -36,10 +44,22 @@ export class EditComponent implements OnInit, OnDestroy {
   @ViewChild('LoginComponent') loginPage: LoginComponent;
 
 
-  constructor(private api: ApiService, private data: LoginService,private atractiiService : AtractiiService,private cazareService :CazariService, private userService : UserService) { }
+  constructor(private pachet: PachetService, private api: ApiService, private data: LoginService,private atractiiService : AtractiiService,private cazareService :CazariService, private userService : UserService) { }
 
   ngOnInit() {
-    console.log(localStorage.getItem('token'))
+    // this.cazareService.getCazaryByPret().subscribe(res=>
+    //   {
+    //     this.cazariPret = res;
+    //     for(let i = 0;i< this.cazariPret.length; i++){
+    //       for(let j=0; j< this.cazariPret[i].length; j++){
+    //         this.cazariByPret.set(this.cazariPret[i][j].pret, this.cazariPret[i][j]);
+    //         this.keys[i] = this.cazariPret[i][j].pret;
+    //       }
+    //     }
+    //       console.log(this.cazariByPret)
+    //   })
+
+    this.getPachet();
     this.getCazari();
     this.getAtractii();
     if(localStorage.getItem("userData")!= "null"){
@@ -50,35 +70,65 @@ export class EditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
   }
-
-  getCazari() {
-    this.cazareService.getCazari()
-      .subscribe((data: Cazare[]) => {
-        this.cazari = [];
-
-        for (let i = 0; i < data.length; i++) {
-          this.cazareService.getCazare(data[i].id.toString())
-            .subscribe((info: Cazare) => {
-              info.id = data[i].id;
-              this.cazari.push(info);
-            },
-              (e: Error) => {
-                console.log('err', e);
-              });
-        }
-
-      },
-        (error: Error) => {
-          console.log('err', error);
-
-        });
+  getPachet(){
+    
   }
+  getCazari() {
+  this.cazareService.getCazari()
+    .subscribe((data: Cazare[]) => {
+      this.cazari = data;
+      this.pachet.getPachete().subscribe(res=>{
+        this.pachete = res;
+        for(let i = 0; i< this.cazari.length; i++){
+          this.cazari[i].listaFacilitatiID = new Array<number>()
+          this.cazari[i].listaFacilitati = new Array<string>()
+          let l : number =0;
+          for(let j =0;j< this.pachete.length; j++){
+            if(this.cazari[i].id == this.pachete[j].cazareID){
+               this.cazari[i].listaFacilitatiID[l] = this.pachete[j].facilitateID;
+               l++;
+            }
+            }
+          }
+        })
+      // this.pachet.getPachete().subscribe(res=>{
+      //   let pachete  = new Array<Pachet>()
+      //   Object.assign(pachete,res);
+      //   for (let i = 0; i < data.length; i++) {
+      //     this.cazareService.getCazare(data[i].id.toString())
+      //       .subscribe((info: Cazare) => {
+      //         info.id = data[i].id;
+      //         info.listaFacilitatiID = new Array<number>()
+      //         let l : number =0;
+      //         for(let j =0 ; j< pachete.length; j++){
+      //           if(pachete[j].cazareID = data[i].id){
+      //             let x = ""
+      //               // this.api.getFacilitate(pachete[j].facilitateID).subscribe(res=> {
+      //               //   info.listaFacilitati[l] = res["denumire"]
+      //               // })       
+      //               info.listaFacilitatiID[l] = pachete[j].facilitateID              
+      //               l++
+      //             }
+      //         }
+      //         console.log(info)
+      //         this.cazari.push(info)
+      //       },
+      //         (e: Error) => {
+      //           console.log('err', e);
+      //         });
+      //   }
+      // })
+    })
+    
+  }
+
+  
+
 
   getAtractii() {
     this.atractiiService.getAtractii()
       .subscribe((data: Atractie[]) => {
         this.atractii = [];
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
           this.atractiiService.getAtractie(data[i].id)
             .subscribe((info: Atractie) => {
@@ -187,3 +237,34 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
 }
+// getCazari() {
+//   this.cazareService.getCazari()
+//     .subscribe((data: Cazare[]) => {
+//       this.cazari = [];
+//       this.pachet.getPachete().subscribe(res=>{
+//         let pachete  = new Array<Pachet>()
+//         Object.assign(pachete,res);
+//         for (let i = 0; i < data.length; i++) {
+//           this.cazareService.getCazare(data[i].id.toString())
+//             .subscribe((info: Cazare) => {
+//               info.id = data[i].id;
+//               info.listaFacilitati = new Array<string>()
+//               for(let j =0 ; j< pachete.length; j++){
+//                 let l : number =-1;
+//                 if(pachete[j].cazareID = data[i].id){
+//                   let x = ""
+//                     this.api.getFacilitate(pachete[j].facilitateID).subscribe(res=> {
+//                       info.listaFacilitati[l] = res["denumire"]
+//                     })                    
+//                     l++
+//                   }
+//                   console.log(info)
+//                   this.cazari.push(info)
+//               }
+//             },
+//               (e: Error) => {
+//                 console.log('err', e);
+//               });
+//         }
+//       })
+//     },

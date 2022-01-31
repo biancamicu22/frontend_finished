@@ -5,6 +5,8 @@ import { Cazare } from '../../shared/cazare.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Facilitate } from 'src/app/shared/facilitate.model';
 import { CazariService } from 'src/app/services/cazari.service';
+import { PachetService } from 'src/app/services/pachet.service';
+import { Pachet } from 'src/app/shared/pachet.model';
 
 
 @Component({
@@ -22,9 +24,10 @@ export class EditCazareModalComponent implements OnInit{
   facilities: Facilitate[] = [];
   facilitiesNames: string[] = [];
   facilitiesSelectedOptions: number[] = [];
+  facilitate: Facilitate;
 
 
-  constructor(public fb: FormBuilder, private api: ApiService,private cazareService :CazariService) { }
+  constructor(public fb: FormBuilder, private api: ApiService,private cazareService :CazariService, private pachetService: PachetService) { }
 
   ngOnInit() {
     this.getToateFacilitatile();
@@ -96,9 +99,17 @@ export class EditCazareModalComponent implements OnInit{
       oras: this.editCazareForm.value.oras,
       listaFacilitatiID: this.transformInNumberArray(this.editCazareForm.value.listaFacilitati),
     });
-
     //console.log(this.editCazareForm.value.listaFacilitati);
-
+    for(var i=0;i< editedCazare.listaFacilitatiID.length;i++)
+    {
+      this.api.getFacilitateID(i+1).subscribe(res=>{
+        var pachet = new Pachet({
+        cazareId : this.cazareCurenta.id,
+        facilitateID : res["id"]
+          })
+        this.pachetService.addPachet(pachet).subscribe(res => console.log(res));
+      })
+    }
     this.cazareService.editCazare(editedCazare)
       .subscribe(() => {
         this.change.emit('cazare');
