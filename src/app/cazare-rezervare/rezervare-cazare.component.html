@@ -1,0 +1,23 @@
+<table class="table table-striped " style="text-align: center;">
+    <thead>
+      <tr>
+        <th scope="col" style="width:5%">Cazare ID</th>
+        <th scope="col" style="width:20%">Cod Rezervare</th>
+        <th scope="col" style="width:10%">Data Plecare</th>
+        <th scope="col" style="width:8%">Data Sosire</th>
+        <th scope="col" style="width:20%">Rezervare ID</th>
+        <th scope="col" style="width:30%">Vacanta ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rez of rezervare;let i=index">
+        <th scope="row">{{rez.cazareID}}</th>
+        <td>{{rez.codRezervare}}</td>
+        <td>{{rez.dataPlecare}}</td>
+        <td>{{rez.dataSosire}}</td>
+        <td>{{rez.id}}</td>
+        <td>{{rez.vacantaID}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)=Return()>Pagina anterioara</button>
