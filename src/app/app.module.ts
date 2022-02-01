@@ -40,6 +40,8 @@ import { EditRestaurantModalComponent } from './edit/edit-restaurant-modal/edit-
 import { ContactComponent } from './contact/contact.component';
 import { UserService } from './services/user.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import {CazareRezervareComponent } from './cazare-rezervare/cazare-rezervare.component';
+import { RezervareCazareComponent } from './cazare-rezervare/rezervare-cazare.component';
 
 
 @NgModule({
@@ -68,6 +70,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     EditAtractieModalComponent,
     EditRestaurantModalComponent,
     ContactComponent,
+    CazareRezervareComponent,
+    RezervareCazareComponent
   ],
   imports: [
     CommonModule,

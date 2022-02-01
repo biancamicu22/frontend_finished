@@ -13,6 +13,8 @@
   import { Meniu } from './meniu.model';
   import { Rezervare } from './rezervare.model';
 import { Observable } from 'rxjs';
+import { CazareRezervare } from './cazare-rezervare.model';
+import { VacantaRezervare } from './vacantaRezervare.model';
 
 
 
@@ -306,6 +308,10 @@ import { Observable } from 'rxjs';
 
     editSong(song: Song) {
       return this.http.put(this.baseUrl + '/song/' + song.id.toString(), song, { headers: this.header });
+    }
+    
+    getVacantaRezervare() : Observable<Array<VacantaRezervare>>{
+      return this.http.get<Array<VacantaRezervare>>(this.baseUrl +"/vacanta/vacantaRezervare",{ headers: this.header })
     }
 
 

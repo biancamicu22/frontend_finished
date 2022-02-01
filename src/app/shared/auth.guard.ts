@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
         if(localStorage.getItem("userData") != "null"){
-            console.log(this.jwtHelper.isTokenExpired(currentUser.token))
             if (currentUser != null) {
                 if(this.jwtHelper.isTokenExpired(currentUser.token)){
                     localStorage.setItem("userData",null);
@@ -27,7 +26,7 @@ export class AuthGuard implements CanActivate {
                         return false;
                 }
                 const uRole = this.authenticationService.GetUserRole();
-                if(uRole == undefined || uRole == ""){
+                if(uRole == undefined){
                     this.performRedirect(route);
                     return false;
                 }

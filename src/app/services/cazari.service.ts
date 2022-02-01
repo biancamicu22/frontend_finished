@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Atractie } from '../shared/atractie.model';
 import { Cazare } from '../shared/cazare.model';
 import { Observable } from 'rxjs';
+import { CazareRezervare } from '../shared/cazare-rezervare.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,10 @@ export class CazariService {
 
   getCazaryByPret() : Observable<Array<Cazare[]>>{
     return this.http.get<Array<Cazare[]>>(this.baseUrl + '/cazare/byPret', { headers: this.header });
+  }
+
+  getCazareRezervare() : Observable<Array<CazareRezervare>>{
+    return this.http.get<Array<CazareRezervare>>(this.baseUrl + '/cazare/cazareCuRezervare', { headers: this.header });
   }
   
 }

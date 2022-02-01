@@ -9,6 +9,8 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { AuthGuard } from './shared/auth.guard';
+import { CazareRezervareComponent } from './cazare-rezervare/cazare-rezervare.component';
+import { RezervareCazareComponent } from './cazare-rezervare/rezervare-cazare.component';
 //import { TermsComponent } from './terms/terms.component';
 
 
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'edit', component: EditComponent , canActivate: [AuthGuard]},
   { path: 'cazari', component: CazareComponent, canActivate: [AuthGuard] },
   { path: 'atractii', component: AtractieComponent, canActivate: [AuthGuard]},
+  { path: 'cazari-rezervari', component: CazareRezervareComponent, canActivate: [AuthGuard]},
+  { path: 'cazari-rezervari/:id', component: RezervareCazareComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'restaurante', component: RestaurantComponent, canActivate: [AuthGuard]},
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
