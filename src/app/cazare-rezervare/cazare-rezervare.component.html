@@ -1,3 +1,4 @@
+<h1>Lista rezervarilor facute pentru cazarile disponibile in aplicatie</h1>
 <table class="table table-striped " style="text-align: center;">
     <thead>
       <tr>
@@ -43,6 +44,26 @@
         <td>
           {{vacrez.Rezervare}}
         </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h1>Rezervari facute in luna ianuarie 2022 pentru atractii</h1>
+  <table class="table table-striped " style="text-align: center;">
+    <thead>
+      <tr>
+        <th scope="col">Vacanta</th>
+        <th scope="col">Atractie</th>
+        <th scope="col">Cod bilet</th>
+        <th scope="col">Data rezervarii</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bilet of bilete;let i=index">
+        <th scope="row">{{bilet.vacantaID}}</th>
+        <td>{{bilet.atractieID}}</td>
+        <td>{{bilet.codBilet}}</td>
+        <td>{{bilet.dataVizita}}</td>
       </tr>
     </tbody>
   </table>
